@@ -15,7 +15,7 @@ router.post('/', productsController.createProducts)
  router.delete("/:id", productsController.deleteProducts)
 
  //modificar productos de la base de datos
- router.patch("/:id", productsController.patchProducts)
+ router.put("/:id", productsController.putProducts)
 
 
  module.exports = router
