@@ -6,6 +6,7 @@ const cors = require('cors')
 const path = require('path')
 
 const productRouter = require('./routes/products')
+const { Console } = require('console')
 
 // la constante app se iguala a express con sus dep
 const app = express()
@@ -17,4 +18,6 @@ app.use(cors({origin: true}))
 app.use(express.json())
 
 app.use('/api/v1/products',productRouter)
+
+
  

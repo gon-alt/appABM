@@ -1,0 +1,27 @@
+version: "3.9" 
+services:
+     appback:
+          build:
+               context: .
+               dockerfile: Dockerfile.dev 	
+          ports:
+               - "5000:5000"
+          links: 
+               - mongus
+          volumes:
+               - .:/home/app
+          environment: 
+               - PORT=5000
+               - MONGO_DB_PASS=appABM
+          
+     mongus:
+          image: mongo
+          ports:
+               - "27017:27017"
+          environment:
+               - MONGO_INITDB_ROOT_USERNAME=gonza
+               - MONGO_INITDB_ROOT_PASSWORD=appABM
+          volumes: 
+               - mongo-data:/data/db
+volumes:
+     mongo-data:                    

@@ -1,0 +1,22 @@
+version: "3.9" 
+services:
+        appback: #contenedor a correr, si es una app la direccion del arivo Dockerfile
+                build: .
+                ports:
+                     - "5000:5000"
+                links: #coneccion de red con la base de datos
+                     - mongus
+                environment: #configuracion de variables de entorno de la app
+                     - PORT=5000
+                     - MONGO_DB_PASS=appABM
+        mongus: # en este caso es una imagen q ya construida y se aclara la imagen q se va a correr en el contendor
+              image: mongo
+              ports:
+                     - "27017:27017"
+              environment:
+                     - MONGO_INITDB_ROOT_USERNAME=gonza
+                     - MONGO_INITDB_ROOT_PASSWORD=appABM
+              volumes: #se gurada el volumen para persistir los datos
+                     - mongo-data:/data/db
+volumes:
+     mongo-data:                    
